@@ -5,6 +5,7 @@ main = {
     dimensions = {},
     setScreen = nil,
     currentScreen = nil,
+    previousScreen = nil,
     screens = {
         menu = {
             table = menuTable
@@ -28,7 +29,7 @@ end
 
 function love.update(dt)
     if (main.currentScreen ~= nil and main.currentScreen.table.functions.update~= nil) then
-        main.currentScreen.table.functions.update(dt)       
+        main.currentScreen.table.functions.update(dt)
     end
 end
 
@@ -39,5 +40,18 @@ function love.draw()
 end
 
 function main.setScreen(screen)
-    main.currentScreen = screen
+    if (main.currentScreen ~= screen) then
+        main.currentScreen = screen
+        
+    end
+end
+
+function love.keypressed(key)
+    main.keypressed(key)
+end
+
+function main.keypressed(key)
+    if (main.currentScreen ~= nil and main.currentScreen.table.functions.key~= nil) then
+        main.currentScreen.table.functions.key(key)
+    end
 end
