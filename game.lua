@@ -6,7 +6,15 @@ gameTable = {
         update = nil,
         draw = nil,
     },
-
+    buttons = {
+        {
+            name = "Vissza",
+            y = 20,
+            click = function ()
+                main.setScreen(main.screens.menu)
+            end
+        },
+    }
 }
 
 function gameTable.functions.draw()
@@ -14,12 +22,20 @@ function gameTable.functions.draw()
         love.graphics.rectangle("fill",x,y,50,50)
         
     end
+    suit.draw()
 end
 
 function gameTable.functions.update(dt)
     time = time or 0
     time = time + (1 / 60)
     x,y = time,getY(time)
+    local y_index = 0
+    for i,v in pairs(gameTable.buttons) do
+        if suit.Button(v.name,2,y_index + 0 + 32 - (#gameTable.buttons*60)/2,100,30).hit then
+            v.click()
+        end
+        y_index = y_index + 60 + 20
+    end
 end
 
 function getY(t)
