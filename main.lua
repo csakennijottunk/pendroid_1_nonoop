@@ -1,5 +1,6 @@
 require("menu")
 require("game")
+require("credits")
 main = {
     dimensions = {},
     setScreen = nil,
@@ -10,6 +11,9 @@ main = {
         },
         game = {
             table = gameTable
+        },
+        credits = {
+            table = creditsTable
         }
     }
 }

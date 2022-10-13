@@ -18,7 +18,7 @@ menuTable = {
             name = "Kreditek",
             y = 20,
             click = function ()
-                
+                main.setScreen(main.screens.credits)
             end
         },
         {
