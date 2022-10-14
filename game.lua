@@ -10,7 +10,10 @@ gameTable = {
     buttons = {
         {
             name = "Vissza",
-            y = 20,
+            y = 5,
+            x = 5,
+            w = 100,
+            h = 30,
             click = function ()
                 main.setScreen(main.screens.menu)
             end
@@ -33,7 +36,7 @@ function gameTable.functions.update(dt)
     x,y = 180,start + getY(time)
     local y_index = 0
     for i,v in pairs(gameTable.buttons) do
-        if suit.Button(v.name,2,y_index + 0 + 32 - (#gameTable.buttons*60)/2,100,30).hit then
+        if suit.Button(v.name,v.x,v.y,v.w,v.h).hit then
             v.click()
         end
         y_index = y_index + 60 + 20
