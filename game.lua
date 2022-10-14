@@ -2,6 +2,7 @@ gameTable = {
     functions = {
         setup = function ()
             suit = require("Framework.suit")
+            time = 0
         end,
         update = nil,
         draw = nil,
@@ -29,7 +30,7 @@ function gameTable.functions.update(dt)
     time = time or 0
     time = time + (1 / 60)
     local start = 150
-    x,y = 180,start + getY(time)*6
+    x,y = 180,start + getY(time)
     local y_index = 0
     for i,v in pairs(gameTable.buttons) do
         if suit.Button(v.name,2,y_index + 0 + 32 - (#gameTable.buttons*60)/2,100,30).hit then

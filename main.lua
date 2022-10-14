@@ -44,14 +44,21 @@ function love.draw()
 end
 
 function main.setScreen(screen)
+    if (screen ~= main.screens.menu or screen ~= nil) then
+        main.previousScreen = main.currentScreen
+    end
     if (main.currentScreen ~= screen) then
         main.currentScreen = screen
-        
+        main.currentScreen.table.functions.setup()
     end
 end
 
 function love.keypressed(key)
-    main.keypressed(key)
+    if (key == "escape" or "appback") then
+        main.setScreen(main.previousScreen)
+    else
+        main.keypressed(key)
+    end
 end
 
 function main.keypressed(key)
