@@ -24,7 +24,6 @@ gameTable = {
 function gameTable.functions.draw()
     if x ~= nil then
         love.graphics.rectangle("fill",x,y,50,50)
-        
     end
     suit.draw()
 end

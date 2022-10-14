@@ -8,6 +8,7 @@ setTable = {
         update = nil,
         draw = nil,
     },
+    page = 1,
     buttons = {
         {
             name = "Vissza",
@@ -29,51 +30,108 @@ setTable = {
                 main.setScreen(main.screens.game)
             end
         },
+      
+        {
+            name = "1",
+            y = y - 155,
+            x = x / 2 - 55,
+            w = 50,
+            h = 37.5,
+            click = function ()
+                setTable.page = 1
+            end
+        },
+        {
+            name = "2",
+            y = y - 155,
+            x = x / 2 + 5,
+            w = 50,
+            h = 37.5,
+            click = function ()
+                setTable.page = 2
+            end
+        }
     },
-    tomeg = {
-        value = 1,
-        min = 0,
-        max = 100,
-        w = 150,
-        h = 15,
-        x = (x / 2) - 75,
-        y = 125
-    },
-    rugomerevseg = {
-        value = 1,
-        min = 0,
-        max = 100,
-        w = 150,
-        h = 15,
-        x = (x / 2) - 75,
-        y = 200
-    },
-    csilapitasitenyezo = {
-        value = 1,
-        min = 0,
-        max = 100,
-        w = 150,
-        h = 15,
-        x = (x / 2) - 75,
-        y = 275
-    },
-    text = {
+    sliders = {
         tomeg = {
-            text = love.graphics.newText(font, "Tömeg: "),
-            x = x /2 - 75,
-            y = 105,
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 125,
+            text = {
+                text = love.graphics.newText(font, "Tömeg: "),
+            },
+            page = 1,
         },
         rugomerevseg = {
-            text = love.graphics.newText(font, "Rugómerevség: "),
-            x = x /2 - 75,
-            y = 180,
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 200,
+            text = {
+                text = love.graphics.newText(font, "Rugómerevség: "),
+            },
+            page = 1,
         },
         csilapitasitenyezo = {
-            text = love.graphics.newText(font, "Csillapítási tényező: "),
-            x = x /2 - 75,
-            y = 255,
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 275,
+            text = {
+                text = love.graphics.newText(font, "Csillapítási tényező: "),
+            },
+            page = 1,
         },
-    }
+        rezgesifrekvencia = {
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 125,
+            text = {
+                text = love.graphics.newText(font, "Rezgési frekvencia: "),
+            },
+            page = 2,
+        },
+        fazisszog = {
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 200,
+            text = {
+                text = love.graphics.newText(font, "Fázisszög: "),
+            },
+            page = 2,
+        },
+        kitereskezdetierteke = {
+            value = 1,
+            min = 0,
+            max = 100,
+            w = 150,
+            h = 15,
+            x = (x / 2) - 75,
+            y = 275,
+            text = {
+                text = love.graphics.newText(font, "Kitérés kezdeti értéke: "),
+            },
+            page = 2,
+        },
+    },
 }
 
 function setTable.functions.update(dt)
@@ -83,17 +141,22 @@ function setTable.functions.update(dt)
             v.click()
         end
     end
-    suit.Slider(setTable.tomeg, setTable.tomeg.x,setTable.tomeg.y, setTable.tomeg.w, setTable.tomeg.h)
-    suit.Label(tostring(math.floor(setTable.tomeg.value)), 175,120, 200,20)
-    suit.Slider(setTable.rugomerevseg, setTable.rugomerevseg.x, setTable.rugomerevseg.y, setTable.rugomerevseg.w, setTable.rugomerevseg.h)
-    suit.Label(tostring(math.floor(setTable.rugomerevseg.value)), 175,195, 200,20)
-    suit.Slider(setTable.csilapitasitenyezo, setTable.csilapitasitenyezo.x, setTable.csilapitasitenyezo.y, setTable.csilapitasitenyezo.w, setTable.csilapitasitenyezo.h)
-    suit.Label(tostring(math.floor(setTable.csilapitasitenyezo.value)), 175,270, 200,20)
+    if (setTable.sliders ~= nil) then
+        for i,v in pairs(setTable.sliders) do
+            if (v.page == setTable.page) then
+                suit.Slider(v,v.x,v.y,v.w,v.h)
+                suit.Label(tostring(math.floor(v.value)),v.x+v.w+5,v.y,50,10)                
+            end
+        end    
+    end
+    
 end
 
 function setTable.functions.draw()
-    for i,v in pairs(setTable.text)do
-        love.graphics.draw(v.text, v.x, v.y)
+    for i,v in pairs(setTable.sliders) do
+        if (v.page == setTable.page) then
+            love.graphics.draw(v.text.text,v.x,v.y - 20)            
+        end
     end
     suit.draw()
 end
