@@ -54,7 +54,7 @@ function main.setScreen(screen)
 end
 
 function love.keypressed(key)
-    if (key == "escape" or "appback") then
+    if (key == "escape" or key == "appback") then
         main.setScreen(main.previousScreen)
     else
         main.keypressed(key)
