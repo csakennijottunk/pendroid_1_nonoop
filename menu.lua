@@ -11,7 +11,7 @@ menuTable = {
             name = "Játék",
             y = 0,
             click = function ()
-                main.setScreen(main.screens.game)
+                main.setScreen(main.screens.set)
             end
         },
         {
