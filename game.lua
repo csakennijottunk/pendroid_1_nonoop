@@ -15,7 +15,7 @@ gameTable = {
             w = 100,
             h = 30,
             click = function ()
-                main.setScreen(main.screens.menu)
+                main.setScreen(main.screens.set)
             end
         },
     }
