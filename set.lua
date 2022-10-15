@@ -55,7 +55,7 @@ setTable = {
     sliders = {
         tomeg = {
             value = 1,
-            min = 0,
+            min = 1,
             max = 100,
             w = 150,
             h = 15,
@@ -68,7 +68,7 @@ setTable = {
         },
         rugomerevseg = {
             value = 1,
-            min = 0,
+            min = 1,
             max = 100,
             w = 150,
             h = 15,
@@ -82,7 +82,7 @@ setTable = {
         csilapitasitenyezo = {
             value = 1,
             min = 0,
-            max = 100,
+            max = 1,
             w = 150,
             h = 15,
             x = (x / 2) - 75,
@@ -94,7 +94,7 @@ setTable = {
         },
         rezgesifrekvencia = {
             value = 1,
-            min = 0,
+            min = 1,
             max = 100,
             w = 150,
             h = 15,
@@ -107,7 +107,7 @@ setTable = {
         },
         fazisszog = {
             value = 1,
-            min = 0,
+            min = 1,
             max = 100,
             w = 150,
             h = 15,
@@ -120,7 +120,7 @@ setTable = {
         },
         kitereskezdetierteke = {
             value = 1,
-            min = 0,
+            min = 1,
             max = 100,
             w = 150,
             h = 15,
@@ -145,9 +145,9 @@ function setTable.functions.update(dt)
         for i,v in pairs(setTable.sliders) do
             if (v.page == setTable.page) then
                 suit.Slider(v,v.x,v.y,v.w,v.h)
-                suit.Label(tostring(math.floor(v.value)),v.x+v.w+5,v.y,50,10)                
+                    suit.Label(tostring(string.format("%.2f",v.value)),v.x+v.w+5,v.y,50,10) 
             end
-        end    
+        end
     end
     
 end
