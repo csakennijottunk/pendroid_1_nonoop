@@ -1,9 +1,11 @@
+sw,sh = love.graphics.getDimensions()
 gameTable = {
     functions = {
         setup = function ()
             suit = require("Framework.suit")
             time = 0
         end,
+        calcSpring = nil,
         update = nil,
         draw = nil,
     },
@@ -18,21 +20,33 @@ gameTable = {
                 main.setScreen(main.screens.menu)
             end
         },
+    },
+    spiral = {
+        img = love.graphics.newImage("assets/rugofull.png")
+    },
+    rectangle = {
+        w = 50,
+        h = 50,
     }
 }
-
 function gameTable.functions.draw()
     if x ~= nil then
-        love.graphics.rectangle("fill",x,y,50,50)
+        love.graphics.draw(gameTable.spiral.img,gameTable.spiral.x,gameTable.spiral.y,0,gameTable.spiral.w,gameTable.spiral.h)
+        love.graphics.rectangle("fill",x,y,gameTable.rectangle.w,gameTable.rectangle.h)
     end
     suit.draw()
 end
 
 function gameTable.functions.update(dt)
+    if (gameTable.spiral.x == nil) then
+        gameTable.calcSpring()
+    end
+    --RUGÓ HEIGHT FRISSITESE
+    gameTable.spiral.h = y/gameTable.spiral.oh
     time = time or 0
     time = time + (1 / 60)
     local start = 150
-    x,y = 180,start + getY(time)
+    x,y = sw/2 - gameTable.rectangle.w/2,start + getY(time)
     local y_index = 0
     for i,v in pairs(gameTable.buttons) do
         if suit.Button(v.name,v.x,v.y,v.w,v.h).hit then
@@ -69,4 +83,15 @@ function getY(t)
      else
         return math.pow(e, -zeta * omegak * t) *(((v0 + zeta * omegak * x0) / (sqrt1ms2 * omegak)) * math.sin(sqrt1ms2 * omegak * t) +x0 * math.cos(sqrt1ms2 * omegak * t))
      end
+end
+
+function gameTable.calcSpring()
+    local rugo = gameTable.spiral
+    --@todo RUGÓ WIDTHJE ARÁNYLIK A RUGÓERŐHŐZ
+    --alap értékek
+    rugo.ow,rugo.oh = rugo.img:getDimensions()
+    rugo.w = 50/rugo.ow
+    rugo.h = y/rugo.oh
+    rugo.x = sw/2 - gameTable.rectangle.w/2
+    rugo.y = 0
 end
