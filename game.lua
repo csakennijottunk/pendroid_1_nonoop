@@ -43,14 +43,14 @@ function gameTable.functions.update(dt)
 end
 
 function getY(t)
-    x0 = 1 -- A kitérés kezdeti értéke (m)
+    x0 = setTable.sliders.kitereskezdetierteke.value--1 -- A kitérés kezdeti értéke (m)
     v0 = 10 -- Kezdeti sebesség (m/s)
 
 
-    c = 0.82 -- Csillapítási tényező, Damping ratio (konstans érték)
-    k = 20 -- Rugómerevség (N/m) Stiffness
-    m = 5  -- Tömeg (N) mass
-    f = 1  -- Frekvancia (Hz)
+    c = setTable.sliders.csilapitasitenyezo.value --0.82 -- Csillapítási tényező, Damping ratio (konstans érték)
+    k = setTable.sliders.rugomerevseg.value --20 -- Rugómerevség (N/m) Stiffness
+    m = setTable.sliders.tomeg.value--5  -- Tömeg (N) mass
+    f = setTable.sliders.rezgesifrekvencia.value--1  -- Frekvancia (Hz)
 
     zeta = c / (2 * math.sqrt(k * m)) -- Csillapítási faktor
     -- \zeta < 1(Underdamped),
