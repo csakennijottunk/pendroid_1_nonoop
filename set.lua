@@ -135,7 +135,6 @@ setTable = {
 }
 
 function setTable.functions.update(dt)
-    local y_index = 0
     for i,v in pairs(setTable.buttons) do
         if suit.Button(v.name,v.x,v.y,v.w,v.h).hit then
             v.click()
