@@ -47,7 +47,7 @@ gameTable = {
     rectangle = {
         w = 50,
         h = 50,
-    }
+    },
 }
 function gameTable.functions.draw()
     if x ~= nil then
@@ -55,6 +55,8 @@ function gameTable.functions.draw()
         love.graphics.rectangle("fill",x,y,gameTable.rectangle.w,gameTable.rectangle.h)
     end
     suit.draw()
+    love.graphics.print("A rugó végpontja: ", 2, sh - 20)
+    love.graphics.print(tostring(string.format("%.0f",gameTable.spiral.h * gameTable.spiral.oh)), 120, sh - 20)
 end
 
 function gameTable.functions.update(dt)

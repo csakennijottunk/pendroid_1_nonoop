@@ -50,7 +50,22 @@ setTable = {
             click = function ()
                 setTable.page = 2
             end
-        }
+        },
+        {
+            name = "Kérnék egy ajánlatot",
+            y = 5,
+            x = x - 155,
+            w = 150,
+            h = 30,
+            click = function ()
+                setTable.sliders.tomeg.value = 10
+                setTable.sliders.rugomerevseg.value = 20
+                setTable.sliders.kitereskezdetierteke.value = 70
+                setTable.sliders.csilapitasitenyezo.value = 1
+                setTable.sliders.fazisszog.value = 1
+                setTable.sliders.rezgesifrekvencia.value = 1
+            end
+        },
     },
     sliders = {
         tomeg = {

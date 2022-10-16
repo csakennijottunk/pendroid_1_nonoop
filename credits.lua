@@ -13,27 +13,27 @@ creditsTable = {
     },
     text = {
         credits = {
-            text = love.graphics.newText(bigfont, "Credits"),
+            text = love.graphics.newText(bigfont, "Fejlesztők"),
             x = x / 2,
             y = y / 2 - 150,
         },
         milan = {
-            text = love.graphics.newText(font, "Fellner Milán"),
+            text = love.graphics.newText(font, "Fellner Milán - Fejlesztő"),
             x = x / 2,
             y = y / 2 - 50,
         },
         bence = {
-            text = love.graphics.newText(font, "Németh Csaba Bence"),
+            text = love.graphics.newText(font, "Németh Csaba Bence - Fejlesztő"),
             x = x / 2,
             y = y / 2,
         },
         kancsal = {
-            text = love.graphics.newText(font, "Kancsal Máté"),
+            text = love.graphics.newText(font, "Kancsal Máté - Grafikus, nincs kifezetve"),
             x = x / 2,
             y = y / 2 + 50,
         },
         zsebok = {
-            text = love.graphics.newText(font, "Zsebők Dávid Ferenc"),
+            text = love.graphics.newText(font, "Zsebők Dávid Ferenc - Fejlesztő, nincs kifizetve"),
             x = x / 2,
             y = y / 2 + 100,
         }
