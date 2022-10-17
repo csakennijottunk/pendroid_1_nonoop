@@ -4,6 +4,7 @@ setTable = {
     functions = {
         setup = function ()
             suit = require("Framework.suit")
+            suit.theme.color.hovered.bg = suit.theme.color.normal.bg
         end,
         update = nil,
         draw = nil,
@@ -96,7 +97,7 @@ setTable = {
         },
         csilapitasitenyezo = {
             value = 1,
-            min = 0,
+            min = 0.1,
             max = 1,
             w = 150,
             h = 15,
