@@ -53,9 +53,13 @@ gameTable = {
             w = sw,
             h = sh/4,
         }
+    },
+    bg = {
+        img = love.graphics.newImage("assets/setscreenhatter.png")
     }
 }
 function gameTable.functions.draw()
+    love.graphics.draw(gameTable.bg.img,0,0,0,sw/gameTable.bg.img:getWidth(),(sh/gameTable.bg.img:getHeight()))
     if x ~= nil then
         love.graphics.draw(gameTable.spiral.img,gameTable.spiral.x,gameTable.spiral.y,0,gameTable.spiral.w,gameTable.spiral.h)
         love.graphics.rectangle("fill",x,y,gameTable.rectangle.w,gameTable.rectangle.h)
@@ -66,6 +70,8 @@ function gameTable.functions.draw()
         love.graphics.print("-",2 + 112, sh - 20)
     end
     love.graphics.print(tostring(string.format("%.2f",math.abs((gameTable.spiral.h * gameTable.spiral.oh)-gameTable.start))) .. " m", 120, sh - 20)
+    --#region sebesség
+    love.graphics.print("A rugó sebessége: " .. tostring(string.format("%.2f",speed(time))) .. " m/s",2,sh-40)
 end
 function gameTable.functions.update(dt)
     --RUGÓ HEIGHT FRISSITESE
@@ -109,4 +115,13 @@ function getY(t)
      else
         return math.pow(e, -zeta * omegak * t) *(((v0 + zeta * omegak * x0) / (sqrt1ms2 * omegak)) * math.sin(sqrt1ms2 * omegak * t) +x0 * math.cos(sqrt1ms2 * omegak * t))
      end
+end
+
+function speed(t)
+    td = 0.001
+    if t < td then
+        return 0
+    else
+        return math.abs(getY(t - td) - getY(t + td)) / (2 * td)
+    end
 end

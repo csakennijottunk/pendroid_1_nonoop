@@ -20,9 +20,12 @@ main = {
         set = {
             table = setTable
         }
-    }
+    },
+    music = love.audio.newSource("assets/music.mp3","static")
 }
 function love.load()
+    main.music:play()
+    main.music:setLooping(true)
     --Betöltjük az összes képernyőnek az inicializáló metódusát.
     for i,v in pairs(main.screens) do
         v.table.functions.setup()
@@ -32,6 +35,9 @@ function love.load()
 end
 
 function love.update(dt)
+    if (type(menuTable.sliders.music) ~= "nil") then
+       main.music:setVolume(menuTable.sliders.music.value/100) 
+    end
     if (main.currentScreen ~= nil and main.currentScreen.table.functions.update~= nil) then
         main.currentScreen.table.functions.update(dt)
     end

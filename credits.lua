@@ -28,12 +28,12 @@ creditsTable = {
             y = y / 2,
         },
         kancsal = {
-            text = love.graphics.newText(font, "Kancsal Máté - Grafikus, nincs kifezetve"),
+            text = love.graphics.newText(font, "Kancsal Máté - Grafikus"),
             x = x / 2,
             y = y / 2 + 50,
         },
         zsebok = {
-            text = love.graphics.newText(font, "Zsebők Dávid Ferenc - Fejlesztő, nincs kifizetve"),
+            text = love.graphics.newText(font, "Zsebők Dávid Ferenc - Fejlesztő"),
             x = x / 2,
             y = y / 2 + 100,
         }

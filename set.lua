@@ -1,9 +1,11 @@
 font = love.graphics.newFont("assets/heavy_heap_rg.otf", 17.5)
 x, y = love.graphics.getDimensions()
+local sw,sh = love.graphics.getDimensions()
 setTable = {
     functions = {
         setup = function ()
             suit = require("Framework.suit")
+            suit.theme.color.active.bg = {1,0,0}
             suit.theme.color.hovered.bg = suit.theme.color.normal.bg
             setTable.sliders.tomeg.value = 10
             setTable.sliders.rugomerevseg.value = 20
@@ -133,7 +135,7 @@ setTable = {
         },
         kitereskezdetierteke = {
             value = 70,
-            mertekegyseg = "",
+            mertekegyseg = "m",
             min = 1,
             max = 100,
             w = 140,
@@ -146,6 +148,9 @@ setTable = {
             page = 2,
         },
     },
+    bg = {
+        img = love.graphics.newImage("assets/setscreenhatter.png")
+    }
 }
 
 function setTable.functions.update(dt)
@@ -166,6 +171,7 @@ function setTable.functions.update(dt)
 end
 
 function setTable.functions.draw()
+    love.graphics.draw(setTable.bg.img,0,0,0,sw/setTable.bg.img:getWidth(),(sh/setTable.bg.img:getHeight()))
     for i,v in pairs(setTable.sliders) do
         if (v.page == setTable.page) then
             love.graphics.draw(v.text.text,v.x,v.y - 20)            
