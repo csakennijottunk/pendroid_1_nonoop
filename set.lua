@@ -63,17 +63,17 @@ setTable = {
                 setTable.sliders.rugomerevseg.value = 20
                 setTable.sliders.kitereskezdetierteke.value = 70
                 setTable.sliders.csilapitasitenyezo.value = 1
-                setTable.sliders.fazisszog.value = 1
                 setTable.sliders.rezgesifrekvencia.value = 1
             end
         },
     },
     sliders = {
         tomeg = {
-            value = 1,
+            value = 10,
+            mertekegyseg = "Kg",
             min = 1,
             max = 100,
-            w = 150,
+            w = 140,
             h = 15,
             x = (x / 2) - 75,
             y = 125,
@@ -83,10 +83,11 @@ setTable = {
             page = 1,
         },
         rugomerevseg = {
-            value = 1,
+            value = 20,
+            mertekegyseg = "N/m",
             min = 1,
             max = 100,
-            w = 150,
+            w = 140,
             h = 15,
             x = (x / 2) - 75,
             y = 200,
@@ -97,9 +98,10 @@ setTable = {
         },
         csilapitasitenyezo = {
             value = 1,
+            mertekegyseg = "Ns/m",
             min = 0.1,
             max = 1,
-            w = 150,
+            w = 140,
             h = 15,
             x = (x / 2) - 75,
             y = 275,
@@ -110,9 +112,10 @@ setTable = {
         },
         rezgesifrekvencia = {
             value = 1,
+            mertekegyseg = "Hz",
             min = 1,
             max = 100,
-            w = 150,
+            w = 140,
             h = 15,
             x = (x / 2) - 75,
             y = 125,
@@ -121,27 +124,15 @@ setTable = {
             },
             page = 2,
         },
-        fazisszog = {
-            value = 1,
+        kitereskezdetierteke = {
+            value = 70,
+            mertekegyseg = "",
             min = 1,
             max = 100,
-            w = 150,
+            w = 140,
             h = 15,
             x = (x / 2) - 75,
             y = 200,
-            text = {
-                text = love.graphics.newText(font, "Fázisszög: "),
-            },
-            page = 2,
-        },
-        kitereskezdetierteke = {
-            value = 1,
-            min = 1,
-            max = 100,
-            w = 150,
-            h = 15,
-            x = (x / 2) - 75,
-            y = 275,
             text = {
                 text = love.graphics.newText(font, "Kitérés kezdeti értéke: "),
             },
@@ -160,7 +151,7 @@ function setTable.functions.update(dt)
         for i,v in pairs(setTable.sliders) do
             if (v.page == setTable.page) then
                 suit.Slider(v,v.x,v.y,v.w,v.h)
-                    suit.Label(tostring(string.format("%.2f",v.value)),v.x+v.w+5,v.y,50,10) 
+                    suit.Label(tostring(string.format("%.1f",v.value).. v.mertekegyseg),v.x+v.w+5,v.y,50,10) 
             end
         end
     end
