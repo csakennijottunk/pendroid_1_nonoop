@@ -5,6 +5,11 @@ setTable = {
         setup = function ()
             suit = require("Framework.suit")
             suit.theme.color.hovered.bg = suit.theme.color.normal.bg
+            setTable.sliders.tomeg.value = 10
+            setTable.sliders.rugomerevseg.value = 20
+            setTable.sliders.kitereskezdetierteke.value = 70
+            setTable.sliders.csilapitasitenyezo.value = 1
+            setTable.sliders.rezgesifrekvencia.value = 1
         end,
         update = nil,
         draw = nil,
@@ -53,17 +58,19 @@ setTable = {
             end
         },
         {
-            name = "Kérnék egy ajánlatot",
+            name = "Random értékek",
             y = 5,
             x = x - 155,
             w = 150,
             h = 30,
             click = function ()
-                setTable.sliders.tomeg.value = 10
-                setTable.sliders.rugomerevseg.value = 20
-                setTable.sliders.kitereskezdetierteke.value = 70
-                setTable.sliders.csilapitasitenyezo.value = 1
-                setTable.sliders.rezgesifrekvencia.value = 1
+                for i, v in pairs(setTable.sliders) do
+                    if (i ~= "rezgesifrekvencia") then
+                        v.value = randomFloat(v.min,v.max)                        
+                    else
+                        v.value = randomFloat(1,10)
+                    end
+                end
             end
         },
     },
@@ -165,4 +172,8 @@ function setTable.functions.draw()
         end
     end
     suit.draw()
+end
+
+function randomFloat(lower, greater)
+    return lower + math.random()  * (greater - lower);
 end

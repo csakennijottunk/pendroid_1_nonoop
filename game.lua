@@ -48,6 +48,12 @@ gameTable = {
         w = 50,
         h = 50,
     },
+    graph = {
+        rectangle = {
+            w = sw,
+            h = sh/4,
+        }
+    }
 }
 function gameTable.functions.draw()
     if x ~= nil then
@@ -56,15 +62,17 @@ function gameTable.functions.draw()
     end
     suit.draw()
     love.graphics.print("A rugó végpontja: ", 2, sh - 20)
-    love.graphics.print(tostring(string.format("%.0f",gameTable.spiral.h * gameTable.spiral.oh)), 120, sh - 20)
+    if ((gameTable.spiral.h * gameTable.spiral.oh)-gameTable.start < 0) then
+        love.graphics.print("-",2 + 112, sh - 20)
+    end
+    love.graphics.print(tostring(string.format("%.2f",math.abs((gameTable.spiral.h * gameTable.spiral.oh)-gameTable.start))) .. " m", 120, sh - 20)
 end
-
 function gameTable.functions.update(dt)
     --RUGÓ HEIGHT FRISSITESE
-    gameTable.spiral.h = y/gameTable.spiral.oh
     time = time or 0
     time = time + (1 / 60)
     x,y = sw/2 - gameTable.rectangle.w/2,gameTable.start + getY(time)
+    gameTable.spiral.h = y/gameTable.spiral.oh
     local y_index = 0
     for i,v in pairs(gameTable.buttons) do
         if suit.Button(v.name,v.x,v.y,v.w,v.h).hit then
