@@ -151,7 +151,7 @@ function setTable.functions.update(dt)
         for i,v in pairs(setTable.sliders) do
             if (v.page == setTable.page) then
                 suit.Slider(v,v.x,v.y,v.w,v.h)
-                    suit.Label(tostring(string.format("%.1f",v.value).. v.mertekegyseg),v.x+v.w+5,v.y,50,10) 
+                    suit.Label(tostring(string.format("%.2f",v.value)..'\n' .. v.mertekegyseg),v.x+v.w+5,v.y,50,10) 
             end
         end
     end
