@@ -35,7 +35,7 @@ menuTable = {
             x = sw/2 - 75,
             y = 80,
             w = 150,
-            h = 15,
+            h = 30,
             min = 0,
             max = 100,
             value = 50,
@@ -69,5 +69,5 @@ function menuTable.functions.draw()
         
     end
     suit.draw()
-    love.graphics.draw(menuTable.sliders.music.icon.img,menuTable.sliders.music.x + menuTable.sliders.music.w + 25,menuTable.sliders.music.y - menuTable.sliders.music.h/3,0,menuTable.sliders.music.icon.w,menuTable.sliders.music.icon.w)
+    love.graphics.draw(menuTable.sliders.music.icon.img,menuTable.sliders.music.x + menuTable.sliders.music.w + 25,menuTable.sliders.music.y,0,menuTable.sliders.music.icon.w,menuTable.sliders.music.icon.w)
 end

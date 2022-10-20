@@ -55,7 +55,7 @@ function main.setScreen(screen)
     end
     if (main.currentScreen ~= screen) then
         main.currentScreen = screen
-        main.currentScreen.table.functions.setup()
+        main.currentScreen.table.functions.setup(main.previousScreen)
     end
 end
 

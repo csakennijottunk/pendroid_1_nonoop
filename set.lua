@@ -3,15 +3,17 @@ x, y = love.graphics.getDimensions()
 local sw,sh = love.graphics.getDimensions()
 setTable = {
     functions = {
-        setup = function ()
+        setup = function (screen)
             suit = require("Framework.suit")
             suit.theme.color.active.bg = {1,0,0}
             suit.theme.color.hovered.bg = suit.theme.color.normal.bg
-            setTable.sliders.tomeg.value = 10
-            setTable.sliders.rugomerevseg.value = 20
-            setTable.sliders.kitereskezdetierteke.value = 70
-            setTable.sliders.csilapitasitenyezo.value = 1
-            setTable.sliders.rezgesifrekvencia.value = 1
+            if (screen == main.screens.menu) then
+                setTable.sliders.tomeg.value = 10
+                setTable.sliders.rugomerevseg.value = 20
+                setTable.sliders.kitereskezdetierteke.value = 70
+                setTable.sliders.csilapitasitenyezo.value = 1
+                setTable.sliders.rezgesifrekvencia.value = 1 
+            end
         end,
         update = nil,
         draw = nil,
@@ -83,7 +85,7 @@ setTable = {
             min = 1,
             max = 100,
             w = 140,
-            h = 15,
+            h = 25,
             x = (x / 2) - 75,
             y = 125,
             text = {
@@ -97,7 +99,7 @@ setTable = {
             min = 1,
             max = 100,
             w = 140,
-            h = 15,
+            h = 25,
             x = (x / 2) - 75,
             y = 200,
             text = {
@@ -111,7 +113,7 @@ setTable = {
             min = 0.1,
             max = 1,
             w = 140,
-            h = 15,
+            h = 25,
             x = (x / 2) - 75,
             y = 275,
             text = {
@@ -125,7 +127,7 @@ setTable = {
             min = 1,
             max = 100,
             w = 140,
-            h = 15,
+            h = 25,
             x = (x / 2) - 75,
             y = 125,
             text = {
@@ -139,7 +141,7 @@ setTable = {
             min = 1,
             max = 100,
             w = 140,
-            h = 15,
+            h = 25,
             x = (x / 2) - 75,
             y = 200,
             text = {
@@ -163,7 +165,7 @@ function setTable.functions.update(dt)
         for i,v in pairs(setTable.sliders) do
             if (v.page == setTable.page) then
                 suit.Slider(v,v.x,v.y,v.w,v.h)
-                    suit.Label(tostring(string.format("%.2f",v.value)..'\n' .. v.mertekegyseg),v.x+v.w+5,v.y,50,10) 
+                    suit.Label(tostring(string.format("%.2f",v.value)..'\n' .. v.mertekegyseg),v.x+v.w+10,v.y,50,10) 
             end
         end
     end

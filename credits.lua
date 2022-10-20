@@ -5,7 +5,7 @@ creditsTable = {
     functions = {
         setup = function ()
             suit = require("Framework.suit")
-            background = love.graphics.newImage("assets/background.jpg")
+            background = love.graphics.newImage("assets/setscreenhatter.png")
         end,
         update = nil,
         draw = nil,
